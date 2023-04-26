@@ -1,6 +1,6 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import 'package:spotify/screens/home_page.dart';
+import 'package:spotify/screens/welcome_page.dart';
 
 void main() {
   runApp(DevicePreview(enabled: true, builder: (context) => const MyApp()));
@@ -16,10 +16,17 @@ class MyApp extends StatelessWidget {
       builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        scaffoldBackgroundColor: Colors.grey[300],
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            backgroundColor: Colors.grey[300],
+            selectedItemColor: Colors.green.shade100),
+        fontFamily: 'Roboto',
+        primarySwatch: Colors.green,
         useMaterial3: true,
       ),
-      home: const HomePage(),
+      home: const WelcomePage(),
     );
   }
 }
