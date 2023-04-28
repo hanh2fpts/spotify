@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:spotify/neu_box.dart';
@@ -22,6 +23,7 @@ class PlayAudioPage extends StatelessWidget {
               const SizedBox(height: 25),
               Container(
                 padding: const EdgeInsets.all(8.0),
+                width: double.infinity,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(15),
                     color: Colors.grey[300],
@@ -30,33 +32,21 @@ class PlayAudioPage extends StatelessWidget {
                           color: Colors.grey.shade500, blurRadius: 15, offset: const Offset(5, 5)),
                       const BoxShadow(color: Colors.white, blurRadius: 15, offset: Offset(-5, -5))
                     ]),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          songDetail.title,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
-                        ),
-                        const SizedBox(height: 4),
-                        Text(
-                          songDetail.artist.toString(),
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                              color: Colors.grey.shade700),
-                        )
-                      ],
+                    Text(
+                      songDetail.title,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
                     ),
-                    const Icon(
-                      Icons.favorite,
-                      color: Colors.red,
-                      size: 32,
+                    const SizedBox(height: 4),
+                    Text(
+                      songDetail.artist.toString(),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 18, color: Colors.grey.shade700),
                     )
                   ],
                 ),
@@ -64,29 +54,33 @@ class PlayAudioPage extends StatelessWidget {
               const SizedBox(height: 25),
               const BarWidget(),
               const SizedBox(height: 25),
-              NeuBox(
-                child: LinearPercentIndicator(
-                  lineHeight: 5,
-                  percent: 0.8,
-                  progressColor: Colors.green,
-                  backgroundColor: Colors.transparent,
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(15),
+                    color: Colors.grey[300],
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.grey.shade500, blurRadius: 15, offset: const Offset(5, 5)),
+                      const BoxShadow(color: Colors.white, blurRadius: 15, offset: Offset(-5, -5))
+                    ]),
+                child: Slider(
+                  onChanged: (value) {},
+                  value: 0.5,
+                  activeColor: Colors.green,
                 ),
               ),
               const SizedBox(height: 25),
-              SizedBox(
-                height: 60,
-                child: Row(
-                  children: const [
-                    Expanded(child: NeuBox(child: Icon(Icons.skip_previous, size: 32))),
-                    Expanded(
-                        flex: 2,
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 20),
-                          child: NeuBox(child: Icon(Icons.pause, size: 32)),
-                        )),
-                    Expanded(child: NeuBox(child: Icon(Icons.skip_next, size: 32)))
-                  ],
-                ),
+              Row(
+                children: const [
+                  Expanded(child: NeuBox(child: Icon(Icons.skip_previous, size: 32))),
+                  Expanded(
+                      flex: 2,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: NeuBox(child: Icon(Icons.pause, size: 32)),
+                      )),
+                  Expanded(child: NeuBox(child: Icon(Icons.skip_next, size: 32)))
+                ],
               ),
               const SizedBox(height: 25)
             ],

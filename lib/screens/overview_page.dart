@@ -71,11 +71,11 @@ class OverViewPage extends StatelessWidget {
           ),
         )),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {},
-          label: Row(
-            children: const [Icon(Icons.shuffle_sharp), Text('Shuffle All')],
-          )),
+      // floatingActionButton: FloatingActionButton.extended(
+      //     onPressed: () {},
+      //     label: Row(
+      //       children: const [Icon(Icons.shuffle_sharp), Text('Shuffle All')],
+      //     )),
     );
   }
 }
