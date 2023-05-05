@@ -6,7 +6,6 @@ part 'play_audio_state.dart';
 class PlayAudioBloc extends Bloc<PlayAudioEvent, PlayAudioState> {
   PlayAudioBloc() : super(PlayAudioInitial()) {
     on<PlayAudioEvent>((event, emit) {
-      // TODO: implement event handler
     });
   }
 }

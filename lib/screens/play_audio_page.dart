@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:spotify/neu_box.dart';
 
 class PlayAudioPage extends StatelessWidget {
