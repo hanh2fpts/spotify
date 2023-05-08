@@ -1,7 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:on_audio_query/on_audio_query.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:spotify/neu_box.dart';
 
 class PlayAudioPage extends StatelessWidget {
@@ -139,11 +139,14 @@ class _ImageMusicWidgetState extends State<ImageMusicWidget> with SingleTickerPr
 
   @override
   Widget build(BuildContext context) {
-    return RotationTransition(
-      turns: Tween(begin: 0.0, end: 1.0).animate(_controller),
+    return AnimatedBuilder(
+      animation: _controller,
+      builder: (context, child) {
+        return Transform.rotate(angle: _controller.value * 2.0 * pi, child: child);
+      },
       child: NeuBox(
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(130),
+        child: CircleAvatar(
+          radius: 120,
           child: QueryArtworkWidget(
             keepOldArtwork: true,
             id: widget.songDetail.id,

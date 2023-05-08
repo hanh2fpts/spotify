@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:on_audio_query/on_audio_query.dart';
 import 'package:spotify/bloc/overview/over_view_bloc.dart';
+import 'package:spotify/neu_box.dart';
 import 'package:spotify/screens/play_audio_page.dart';
 
 class OverViewPage extends StatelessWidget {
@@ -90,10 +91,9 @@ class HeaderWidget extends StatelessWidget {
       children: [
         const Text(
           'Welcome',
-          style: TextStyle(fontSize: 16),
+          style: TextStyle(fontSize: 22, fontFamily: 'RobotoBold'),
         ),
-        const Text('Enjoy Your Favorite Music',
-            style: TextStyle(fontSize: 22, fontFamily: 'RobotoBold')),
+        const Text('Enjoy Your Favorite Music', style: TextStyle(fontSize: 16)),
         const SizedBox(height: 20),
         Container(
           height: 50,
@@ -155,12 +155,11 @@ class ItemCoverImage extends StatelessWidget {
   final String urlImage;
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 150,
-      width: 150,
-      child: AspectRatio(
-          aspectRatio: 16 / 9,
-          child: ClipRRect(borderRadius: BorderRadius.circular(15), child: Image.asset(urlImage))),
+    return NeuBox(
+      child: CircleAvatar(
+        radius: 70,
+        backgroundImage: AssetImage(urlImage),
+      ),
     );
   }
 }
@@ -192,7 +191,7 @@ class ListMusic extends StatelessWidget {
                               color: Colors.white, blurRadius: 15, offset: Offset(-5, -5))
                         ]),
                     child: ListTile(
-                      onTap: () => Navigator.of(context).push(CupertinoPageRoute(
+                      onTap: () => Navigator.of(context).push(CupertinoModalPopupRoute(
                           builder: (context) => const PlayAudioPage(),
                           settings: RouteSettings(arguments: listSong[index]))),
                       leading: QueryArtworkWidget(id: listSong[index].id, type: ArtworkType.AUDIO),
